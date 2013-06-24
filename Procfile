@@ -1,1 +1,0 @@
-web:    sh www/bin/compile /app /tmp
