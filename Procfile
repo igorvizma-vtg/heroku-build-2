@@ -1,0 +1,1 @@
+web:    sh www/build/vulcan.sh
