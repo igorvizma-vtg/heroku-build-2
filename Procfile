@@ -1,1 +1,1 @@
-web:    sh www/build/vulcan.sh
+web:    sh www/bin/compile /app /tmp
