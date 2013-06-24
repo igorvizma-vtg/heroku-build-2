@@ -37,14 +37,14 @@ fi
 BP_URL="http://tiadev.visiontechglobal.com/app/php-apache.tar.gz"
 echo "-----> Bundling Apache $APACHE_VERSION PHP $PHP_VERSION build $BUILDPACK_VERSION"
 echo "-----> Buildpack URL $BP_URL"
-curl --max-time 60 --location "$BP_URL" | tar xz
+#curl --max-time 60 --location "$BP_URL" | tar xz
 
-# echo "-----> Extracting bsdiff binary"
-# tar xzf $LP_DIR/src/bsdiff.tgz
-# echo "-----> Bundling Apache $APACHE_VERSION/PHP $PHP_VERSION build"
-# gunzip $LP_DIR/src/build.tgz
-# local/bin/bspatch $LP_DIR/src/build.tar $LP_DIR/src/build-apache-$APACHE_VERSION-php-$PHP_VERSION.tar $LP_DIR/src/build.bsdiff
-# tar xf $LP_DIR/src/build-apache-$APACHE_VERSION-php-$PHP_VERSION.tar
+ echo "-----> Extracting bsdiff binary"
+ tar xzf $LP_DIR/src/bsdiff.tgz
+ echo "-----> Bundling Apache $APACHE_VERSION/PHP $PHP_VERSION build"
+ gunzip $LP_DIR/src/build.tgz
+ local/bin/bspatch $LP_DIR/src/build.tar $LP_DIR/src/build-apache-$APACHE_VERSION-php-$PHP_VERSION.tar $LP_DIR/src/build.bsdiff
+ tar xf $LP_DIR/src/build-apache-$APACHE_VERSION-php-$PHP_VERSION.tar
 
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
