@@ -24,8 +24,8 @@ cd $BUILD_DIR
 
 # move app things to www
 mkdir -p $CACHE_DIR/www
-mv * $CACHE_DIR/www
-mv $CACHE_DIR/www .
+#mv * $CACHE_DIR/www
+#mv $CACHE_DIR/www .
 
 # keep Procfile
 if [ -f www/Procfile ]; then
@@ -38,7 +38,7 @@ BP_URL="http://tiadev.visiontechglobal.com/app/php-apache.tar.gz"
 echo "-----> Bundling Apache $APACHE_VERSION PHP $PHP_VERSION build $BUILDPACK_VERSION"
 echo "-----> Buildpack URL $BP_URL"
 curl --max-time 220 --location "$BP_URL" | tar xz
-
+echo '00000000000000000000000'
 # echo "-----> Extracting bsdiff binary"
 # tar xzf $LP_DIR/src/bsdiff.tgz
 # echo "-----> Bundling Apache $APACHE_VERSION/PHP $PHP_VERSION build"
@@ -54,10 +54,10 @@ cp $LP_DIR/conf/php.ini php
 mkdir -p bin/php
 ln -s /app/php/bin/php bin/php
 
-
+echo '11111111111111'
 
 export LD_LIBRARY_PATH=$BUILD_DIR/local/lib
-
+echo '55555555555'
 # set a slug_id identifier
 slug_id=$(php/bin/php -r "echo md5(uniqid('', TRUE));")
 echo $slug_id > SLUG_ID
@@ -68,7 +68,7 @@ echo "Checking for WWWROOT environment variable..."
 if [ -n "\${WWWROOT:+x}" ]; then
   sed -ie "s%/app/www%/app/www\$WWWROOT%" /app/apache/conf/httpd.conf
 fi
-
+echo '222222222222'
 export HW_ADDR=\`/sbin/ifconfig eth0 | grep HWaddr | awk '{print \$5}'\`
 echo "SetEnv HW_ADDR \$HW_ADDR" >> /app/apache/conf/httpd.conf;
 
@@ -78,6 +78,7 @@ done
 touch /app/apache/logs/error_log
 touch /app/apache/logs/access_log
 export PHP_ERROR_LOG=\`/app/php/bin/php -i | grep error_log | awk '{print \$5}'\`
+echo '33333333333333333'
 touch \$PHP_ERROR_LOG
 chmod 0777 \$PHP_ERROR_LOG
 tail -F /app/apache/logs/error_log &
