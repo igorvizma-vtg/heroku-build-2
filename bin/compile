@@ -18,7 +18,7 @@ CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
 # include .files when moving things around
-shopt -s dotglob
+#shopt -s dotglob
 
 cd $BUILD_DIR
 
